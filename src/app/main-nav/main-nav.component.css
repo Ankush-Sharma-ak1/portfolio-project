@@ -1,0 +1,46 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 300px;
+  background: #f5f5f5;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+.rounded-img {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 30px;
+  border-radius: 50%;
+}
+.center-content {
+  justify-content: center !important;
+}
+
+#job-title-span {
+    display: block;
+    margin-bottom: 2em;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.custom-height-200 {
+  height: 800px;
+  background: #f5f5f5;
+  text-align: center;
+}
+
+.is-Active {
+  background: rgba(0,0,0,.04) !important;
+}
+.mat-nav-list .mat-list-item:focus {
+  background:  #f5f5f5;
+}
+hr { 
+  margin: 10px;
+}

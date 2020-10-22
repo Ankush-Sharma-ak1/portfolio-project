@@ -1,0 +1,60 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+      <mat-toolbar></mat-toolbar>
+    <mat-nav-list>
+      <div class="d-flex justify-content-center">
+        <img src="assets/images/male.png" alt="..." class="rounded-img">
+      </div>
+      <div class="text-center">
+        <h4>Ankush Sharma</h4>
+        <span id="job-title-span">Software engineer</span>
+        <hr>
+      </div>
+     
+        <a id="{{item}}" mat-list-item [routerLink]= "[item]"  (click)="scrollView(item)"  class="d-flex justify-content-center" *ngFor="let item of menuList ; let i = index" >{{item}}</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!-- <span>portfolio-project</span> -->
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="custom-height-200" id="AboutDiv" #about>
+      <app-about></app-about>
+    </div>
+
+    <div class="custom-height-200" id="TechnologiesDiv" #technology>
+      <app-technologies></app-technologies>
+    </div>
+
+    <div class="custom-height-200" id="ExperienceDiv" #experience> 
+      <app-experience></app-experience> 
+    </div>
+   
+    <div class="custom-height-200" id="EducationDiv" #education>
+      <app-education></app-education>
+    </div>
+
+    <div class="custom-height-200" id="RecommendationsDiv" #recommendation>
+      <app-recommendation></app-recommendation>
+    </div>
+
+    <div class="custom-height-200" id="ContactDiv" #contact>
+      <app-contact></app-contact>
+    </div>
+
+    
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
