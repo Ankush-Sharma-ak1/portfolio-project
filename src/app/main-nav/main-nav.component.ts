@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-main-nav',
@@ -18,6 +19,7 @@ export class MainNavComponent implements AfterViewInit{
   @ViewChild('education') eduElement: ElementRef;
   @ViewChild('recommendation') recommendationElement: ElementRef;
   @ViewChild('contact') contactElement: ElementRef;
+  @ViewChild('drawer') drawerElement: MatSidenav;
 
   public currentActive = null;
   public aboutOffset: number = null;
@@ -40,6 +42,10 @@ export class MainNavComponent implements AfterViewInit{
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
 
   scrollView(item) {
+    if(window.matchMedia("(max-width: 768px)").matches)
+    {
+      this.drawerElement.close();
+    }
     document.getElementById(item + 'Div').scrollIntoView({behavior:"smooth"});
   }
 
@@ -93,6 +99,7 @@ export class MainNavComponent implements AfterViewInit{
   this.removeActiveClass(elementArray);
   if(elementId != '')
     document.getElementById(elementId).classList.add('is-Active');
+
   }
 
   removeActiveClass(eleArray) {
