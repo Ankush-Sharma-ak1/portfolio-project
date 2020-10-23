@@ -17,6 +17,8 @@ const routes: Routes = [
   {path: 'Technologies', component: TechnologiesComponent},
   {path: 'Recommendations', component: RecommendationComponent},
   {path: 'Contact', component: ContactComponent},
+  //{path: '404', component: AppComponent},
+  {path: '**', redirectTo: '/app'}
 ];
 
 @NgModule({

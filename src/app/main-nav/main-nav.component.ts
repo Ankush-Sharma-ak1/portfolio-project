@@ -42,7 +42,7 @@ export class MainNavComponent implements AfterViewInit{
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
 
   scrollView(item) {
-    if(window.matchMedia("(max-width: 768px)").matches)
+    if(window.matchMedia("(max-width: 992px)").matches)
     {
       this.drawerElement.close();
     }
