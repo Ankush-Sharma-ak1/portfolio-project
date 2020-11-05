@@ -17,6 +17,10 @@ import { ExperienceComponent } from './experience/experience.component';
 import { EducationComponent } from './education/education.component';
 import { RecommendationComponent } from './recommendation/recommendation.component';
 import { ContactComponent } from './contact/contact.component';
+import { IntroComponent } from './intro/intro.component';
+import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { AnimateOnScrollModule } from 'ng2-animate-on-scroll';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { ContactComponent } from './contact/contact.component';
     ExperienceComponent,
     EducationComponent,
     RecommendationComponent,
-    ContactComponent
+    ContactComponent,
+    IntroComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +43,10 @@ import { ContactComponent } from './contact/contact.component';
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatCarouselModule.forRoot(),
+    IvyCarouselModule,
+    AnimateOnScrollModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

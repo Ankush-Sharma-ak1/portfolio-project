@@ -1,0 +1,19 @@
+.fa-facebook-square {
+    color: #3b5998;
+    background-image: linear-gradient( to bottom, transparent 20%, white 20%, white 93%, transparent 93% );
+    background-size: 55%;
+    background-position: 70% 0;
+    background-repeat: no-repeat;
+    font-size: 25px;
+  }
+  .fa-whatsapp  {
+    color:#fff;
+    background:
+    linear-gradient(#25d366,#25d366)10px 84%/10px 15px no-repeat,
+    radial-gradient(#25d366 60%,transparent 0);
+    font-size: 25px;
+  }
+  .fa-linkedin-square {
+    color: #0976b4;
+    font-size: 25px;
+  }

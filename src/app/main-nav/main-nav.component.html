@@ -6,7 +6,7 @@
       <mat-toolbar></mat-toolbar>
     <mat-nav-list>
       <div class="d-flex justify-content-center">
-        <img src="assets/images/male.png" alt="..." class="rounded-img">
+        <img src="assets/images/anku.jpeg" alt="..." class="rounded-img">
       </div>
       <div class="text-center">
         <h4>Ankush Sharma</h4>
@@ -30,29 +30,35 @@
       <!-- <span>portfolio-project</span> -->
     </mat-toolbar>
     <!-- Add Content Here -->
-    <div class="custom-height-200" id="AboutDiv" #about>
+    <div class="custom-gradient"> 
+      <app-intro></app-intro>
+      <hr class="no-space w-60">
+    </div>
+    <div id="AboutDiv" class="m-3" #about  [@openClose]="isAboutOpen ? 'open' : 'closed'">
       <app-about></app-about>
+      <hr class="no-space w-60">
     </div>
 
-    <div class="custom-height-200" id="TechnologiesDiv" #technology>
+    <div id="TechnologiesDiv" class="m-3" #technology  [@openClose]="isTechOpen ? 'open' : 'closed'">
       <app-technologies></app-technologies>
+      <hr class="no-space w-60">
     </div>
 
-    <div class="custom-height-200" id="ExperienceDiv" #experience> 
+    <div id="ExperienceDiv" class="m-3" #experience  [@openClose]="isExpOpen ? 'open' : 'closed'"> 
       <app-experience></app-experience> 
+      <hr class="no-space w-60">
     </div>
    
-    <div class="custom-height-200" id="EducationDiv" #education>
+
+     <div id="Personal-DetailsDiv" class="m-3"  #personalDetails  [@openClose]="isEduOpen ? 'open' : 'closed'">  
       <app-education></app-education>
+      <hr class="no-space w-60">
+      <div id="ContactDiv" #contact>
+        <app-contact></app-contact>
+      </div>
     </div>
 
-    <div class="custom-height-200" id="RecommendationsDiv" #recommendation>
-      <app-recommendation></app-recommendation>
-    </div>
-
-    <div class="custom-height-200" id="ContactDiv" #contact>
-      <app-contact></app-contact>
-    </div>
+    
 
     
 

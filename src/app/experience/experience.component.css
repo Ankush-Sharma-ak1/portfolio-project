@@ -1,0 +1,7 @@
+.float-right {
+    float: right;
+    font-weight: 300;
+}
+.custom-clear {
+    clear: both;
+}

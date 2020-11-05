@@ -1,13 +1,16 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import AOS from 'aos';
+
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
-  styleUrls: ['./about.component.css']
+  styleUrls: ['./about.component.css'],
 })
 export class AboutComponent implements OnInit {
 
+ 
   // @HostListener('window:wheel', ['$event'])
   // onWheelScroll(evento: WheelEvent) {
   //   // Scroll up
@@ -26,7 +29,8 @@ export class AboutComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit () {
+    AOS.init();
   }
 
 }

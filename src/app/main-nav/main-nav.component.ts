@@ -4,11 +4,35 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-main-nav',
   templateUrl: './main-nav.component.html',
-  styleUrls: ['./main-nav.component.css']
+  styleUrls: ['./main-nav.component.css'],
+  animations: [
+    trigger('openClose', [
+      // ...
+      state('open', style({
+       // height: '200px',
+       //right: '-100%',
+        opacity: 1,
+        transform: 'translateX(0)',
+        //backgroundColor: 'yellow'
+      })),
+      state('closed', style({
+       // height: '100px',
+        opacity: 0.3,
+       // backgroundColor: 'green'
+      })),
+      transition('open => closed', [
+        animate('1s ease-out')
+      ]),
+      transition('closed => open', [
+        animate('1s ease-out')
+      ]),
+    ]),
+  ]
 })
 export class MainNavComponent implements AfterViewInit{
 
@@ -16,9 +40,7 @@ export class MainNavComponent implements AfterViewInit{
   @ViewChild('about') aboutElement: ElementRef;
   @ViewChild('experience') expElement: ElementRef;
   @ViewChild('technology') techElement: ElementRef;
-  @ViewChild('education') eduElement: ElementRef;
-  @ViewChild('recommendation') recommendationElement: ElementRef;
-  @ViewChild('contact') contactElement: ElementRef;
+  @ViewChild('personalDetails') eduElement: ElementRef;
   @ViewChild('drawer') drawerElement: MatSidenav;
 
   public currentActive = null;
@@ -26,12 +48,13 @@ export class MainNavComponent implements AfterViewInit{
   public techOffset: number = null;
   public expOffset: number = null;
   public educOffset: number = null;
-  public recommOffset: number = null;
-  public contactOffset: number = null;
+  isAboutOpen = false;
+  isTechOpen = false;
+  isExpOpen = false;
+  isEduOpen = false;
 
-   menuList: string [] = ['About', 'Technologies', 'Experience', 'Education', 'Recommendations', 'Contact'];
-  scrollingItem = '';
-  isSelected: boolean = false;
+   menuList: string [] = ['About', 'Technologies', 'Experience', 'Personal-Details'];
+  
    
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -42,7 +65,7 @@ export class MainNavComponent implements AfterViewInit{
   constructor(private breakpointObserver: BreakpointObserver, private router: Router) {}
 
   scrollView(item) {
-    if(window.matchMedia("(max-width: 992px)").matches)
+    if(this.breakpointObserver.isMatched("(max-width: 992px)"))
     {
       this.drawerElement.close();
     }
@@ -54,57 +77,57 @@ export class MainNavComponent implements AfterViewInit{
     this.expOffset = this.expElement.nativeElement.offsetTop;
     this.techOffset = this.techElement.nativeElement.offsetTop;
     this.educOffset = this.eduElement.nativeElement.offsetTop;
-    this.recommOffset = this.recommendationElement.nativeElement.offsetTop;
-    this.contactOffset = this.contactElement.nativeElement.offsetTop;
-
   }
+  
 
   @HostListener('window:scroll', ['$event'])
   checkOffsetTop() {
     var elementId = '';
     var elementArray = [];
-
-  if(window.pageYOffset >= this.aboutOffset && window.pageYOffset < this.techOffset)
+   this.isAboutOpen = false;
+   this.isTechOpen = false;
+   this.isExpOpen = false;
+   this.isEduOpen = false;
+  if(window.pageYOffset >= (this.aboutOffset-50)  && window.pageYOffset < (this.techOffset-50) )
   {
     elementId = 'About';
    this.router.navigate(['About']);
    elementArray.push('Technologies');
-  
+  this.isAboutOpen = true;
   }
-  else if( window.pageYOffset >= this.techOffset && window.pageYOffset < this.expOffset) {
+  else if( window.pageYOffset >= (this.techOffset-50) && window.pageYOffset < (this.expOffset-50) ) {
     elementId = 'Technologies';
     this.router.navigate(['Technologies']);
     elementArray.push('About', 'Experience');
-  } 
-  else if (window.pageYOffset >= this.expOffset && window.pageYOffset < this.educOffset) {
+    this.isTechOpen = true;
+  
+  }
+  else if (window.pageYOffset >= (this.expOffset-50) && window.pageYOffset < (this.educOffset-300)) {
     elementId = 'Experience';
     this.router.navigate(['Experience']);
-    elementArray.push('Technologies', 'Education');
+    elementArray.push('Technologies', 'Personal-Details');
+    this.isExpOpen = true;
   }
-  else if(window.pageYOffset >= this.educOffset && window.pageYOffset < this.recommOffset) {
-    elementId = 'Education';
+  else if(window.pageYOffset >= (this.educOffset-300)) {
+    elementId = 'Personal-Details';
     this.router.navigate(['Education']);
-    elementArray.push('Experience', 'Recommendations');
+    elementArray.push('Experience');
+    this.isEduOpen = true;
   }
-  else if(window.pageYOffset >= this.recommOffset && window.pageYOffset < this.contactOffset) {
-    elementId = 'Recommendations';
-    this.router.navigate(['Recommendations']);
-    elementArray.push('Education','Contact');
-  }
-  else if (window.pageYOffset >= this.contactOffset) {
-    elementId= 'Contact';
-    this.router.navigate(['Contact']);
-    elementArray.push('Recommendations');
-  }
+
   this.removeActiveClass(elementArray);
   if(elementId != '')
+  {  
+    
     document.getElementById(elementId).classList.add('is-Active');
-
+    document.getElementById(elementId + 'Div').classList.add('custom-background');
+  }
   }
 
   removeActiveClass(eleArray) {
     for(let i=0; i< eleArray.length; i++) {
       document.getElementById(eleArray[i]).classList.remove('is-Active');
+      document.getElementById(eleArray[i] + 'Div').classList.remove('custom-background');
     }
    
   }
