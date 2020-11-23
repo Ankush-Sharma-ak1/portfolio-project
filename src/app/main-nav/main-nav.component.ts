@@ -102,13 +102,13 @@ export class MainNavComponent implements AfterViewInit{
     this.isTechOpen = true;
   
   }
-  else if (window.pageYOffset >= (this.expOffset-50) && window.pageYOffset < (this.educOffset-300)) {
+  else if (window.pageYOffset >= (this.expOffset-50) && window.pageYOffset < (this.educOffset-400)) {
     elementId = 'Experience';
     //this.router.navigate(['Experience']);
     elementArray.push('Technologies', 'Personal-Details');
     this.isExpOpen = true;
   }
-  else if(window.pageYOffset >= (this.educOffset-300)) {
+  else if(window.pageYOffset >= (this.educOffset-400)) {
     elementId = 'Personal-Details';
   //  this.router.navigate(['Education']);
     elementArray.push('Experience');
