@@ -91,26 +91,26 @@ export class MainNavComponent implements AfterViewInit{
   if(window.pageYOffset >= (this.aboutOffset-50)  && window.pageYOffset < (this.techOffset-50) )
   {
     elementId = 'About';
-   this.router.navigate(['About']);
+  // this.router.navigate(['About']);
    elementArray.push('Technologies');
   this.isAboutOpen = true;
   }
   else if( window.pageYOffset >= (this.techOffset-50) && window.pageYOffset < (this.expOffset-50) ) {
     elementId = 'Technologies';
-    this.router.navigate(['Technologies']);
+  //  this.router.navigate(['Technologies']);
     elementArray.push('About', 'Experience');
     this.isTechOpen = true;
   
   }
   else if (window.pageYOffset >= (this.expOffset-50) && window.pageYOffset < (this.educOffset-300)) {
     elementId = 'Experience';
-    this.router.navigate(['Experience']);
+    //this.router.navigate(['Experience']);
     elementArray.push('Technologies', 'Personal-Details');
     this.isExpOpen = true;
   }
   else if(window.pageYOffset >= (this.educOffset-300)) {
     elementId = 'Personal-Details';
-    this.router.navigate(['Education']);
+  //  this.router.navigate(['Education']);
     elementArray.push('Experience');
     this.isEduOpen = true;
   }
